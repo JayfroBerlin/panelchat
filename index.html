@@ -55,5 +55,25 @@ Kommentiere hier
     <button type="submit">Absenden</button type="submit">
   
   <ul id="commentlist"></ul id="commentlist">
-  
 
+      
+  <script>
+    const form = document.getElementById('commentForm');
+    const input = document.getElementById('commentInput');
+    const list = document.getElementById('commentList');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const text = input.value.trim();
+      if (text !== '') {
+        const li = document.createElement('li');
+        li.textContent = text;
+        list.appendChild(li);
+        input.value = '';
+      }
+    });
+  </script>
+</body>
+</html>
+
+      
