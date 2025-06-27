@@ -1,16 +1,59 @@
+<html lang="de"></html lang="de">
+  <meta charset="utf-8" ></meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      text-align: center;
+    }
+    #commentList {
+      margin-top: 2em;
+      padding: 0;
+      list-style: none;
+    }
+    #commentList li {
+      background: #fff;
+      margin-bottom: 1em;
+      padding: 1em;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+    #commentForm {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      margin-top: 2em;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 60px;
+      padding: 0.5em;
+      font-size: 1em;
+    }
+    button {
+      padding: 0.7em;
+      font-size: 1em;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  
+  
+Kommentiere hier
+  <form id="commentform"></form id="commentform">
+    <textarea id="commentinput" placeholder="dein kommentar..."></textarea id="commentinput" placeholder="dein kommentar...">
+    <button type="submit">Absenden</button type="submit">
+  
+  <ul id="commentlist"></ul id="commentlist">
+  
 
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kommentare zur Microsite</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2em;
-      background-color: #f9f9f9;
-    }
-    h1 {
-      text-align: center;
-    }
