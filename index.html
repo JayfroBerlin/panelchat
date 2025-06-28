@@ -104,43 +104,6 @@
         // Load comments on page load
         window.onload = loadComments;
     </script>
-
-<h1>Hinterlasse einen Kommentar</h1>
-    <textarea id="commentInput" placeholder="Schreibe deinen Kommentar hier..."></textarea><br>
-    <button onclick="addComment()">Senden</button>
-
-    <div id="commentWall"></div>
-
-    <script>
-        function loadComments() {
-            const comments = localStorage.getItem('comments');
-            if (comments) {
-                document.getElementById('commentWall').innerText = comments;
-            }
-        }
-
-        function addComment() {
-            const input = document.getElementById('commentInput');
-            const newComment = input.value.trim();
-            if (newComment) {
-                let existing = localStorage.getItem('comments');
-                if (existing) {
-                    existing += " - " + newComment;
-                } else {
-                    existing = newComment;
-                }
-                localStorage.setItem('comments', existing);
-                document.getElementById('commentWall').innerText = existing;
-                input.value = "";
-            }
-        }
-
-        window.onload = loadComments;
-    </script>
-
-
-
-
-
+    
 </body>
 </html>
