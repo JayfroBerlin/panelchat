@@ -1,23 +1,48 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Hello World Microsite</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      text-align: center;
-      margin-top: 20vh;
-      background-color: #f0f0f0;
-    }
-    h1 {
-      color: #007acc;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>Kommentar-Wall</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        #commentWall { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
+        textarea { width: 300px; height: 100px; }
+        button { margin-top: 10px; }
+    </style>
 </head>
 <body>
-  <h1>Hello World 👋</h1>
-  <p>Willkommen auf deiner ersten Microsite mit GitHub Pages!</p>
+    <h1>Hinterlasse einen Kommentar</h1>
+    <textarea id="commentInput" placeholder="Schreibe deinen Kommentar hier..."></textarea><br>
+    <button onclick="addComment()">Senden</button>
+
+    <div id="commentWall"></div>
+
+    <script>
+        function loadComments() {
+            const comments = localStorage.getItem('comments');
+            if (comments) {
+                document.getElementById('commentWall').innerText = comments;
+            }
+        }
+
+        function addComment() {
+            const input = document.getElementById('commentInput');
+            const newComment = input.value.trim();
+            if (newComment) {
+                let existing = localStorage.getItem('comments');
+                if (existing) {
+                    existing += " - " + newComment;
+                } else {
+                    existing = newComment;
+                }
+                localStorage.setItem('comments', existing);
+                document.getElementById('commentWall').innerText = existing;
+                input.value = "";
+            }
+        }
+
+        window.onload = loadComments;
+    </script>
 </body>
 </html>
