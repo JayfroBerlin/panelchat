@@ -9,14 +9,103 @@
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #005288;
-            color: white;}
-        #commentWall { margin-top: 20px; padding: 10px; border: 1px solid #ccc; }
-        textarea { width: 300px; height: 100px; }
-        button { margin-top: 10px; }
+            color: white;
+        }
+        header {
+            background-color: white;
+            color: #005288;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        header img {
+            height: 40px;
+        }
+        main {
+            padding: 20px;
+        }
+        #commentWall {
+            background-color: #0071a8;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            min-height: 50px;
+        }
+        #commentForm {
+            display: flex;
+            flex-direction: column;
+        }
+        #commentInput {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        #submitButton {
+            padding: 10px;
+            font-size: 16px;
+            background-color: white;
+            color: #005288;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        footer {
+            background-color: white;
+            color: #005288;
+            text-align: center;
+            padding: 10px;
+        }
     </style>
 </head>
 <body>
-    <h1>Hinterlasse einen Kommentar</h1>
+    <header>
+        <h1>Kommentar-Wall</h1>
+        <img src="https://www.govdigital.de/fileadmin/_processed_/f/3/csm_govdigital_logo_4c_300dpi_0f6e3c2b4d.png" alt="govdigital Logo">
+    </header>
+    <main>
+        <div id="commentWall"></div>
+        <form id="commentForm">
+            <input type="text" id="commentInput" placeholder="Dein Kommentar..." required>
+            <button type="submit" id="submitButton">Senden</button>
+        </form>
+    </main>
+    <footer>
+        Danke fürs Mitmachen – www.govdigital.de
+    </footer>
+
+    <script>
+        const commentWall = document.getElementById('commentWall');
+        const commentForm = document.getElementById('commentForm');
+        const commentInput = document.getElementById('commentInput');
+
+        function loadComments() {
+            const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+            commentWall.textContent = comments.join(' - ');
+        }
+
+        commentForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const newComment = commentInput.value.trim();
+            if (newComment) {
+                const comments = JSON.parse(localStorage.getItem('comments') || '[]');
+                comments.push(newComment);
+                localStorage.setItem('comments', JSON.stringify(comments));
+                commentInput.value = '';
+                loadComments();
+            }
+        });
+
+        // Load comments on page load
+        window.onload = loadComments;
+    </script>
+
+<h1>Hinterlasse einen Kommentar</h1>
     <textarea id="commentInput" placeholder="Schreibe deinen Kommentar hier..."></textarea><br>
     <button onclick="addComment()">Senden</button>
 
@@ -48,5 +137,7 @@
 
         window.onload = loadComments;
     </script>
+
+
 </body>
 </html>
